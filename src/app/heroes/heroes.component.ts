@@ -1,7 +1,14 @@
-import {Hero} from '../hero';
-import { HEROES } from '../mock-heroes';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 
-import {Component, OnInit} from '@angular/core';
+import {
+  Hero
+} from '../hero';
+import {
+  HeroService
+} from '../hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -10,14 +17,22 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class HeroesComponent implements OnInit {
+  // Service injecté
+  constructor(private heroService: HeroService) {}
+
+  // Hero
   //hero = 'Windstorm';
 
   // Liste des héros
-  heroes = HEROES;
+  // heroes = HEROES;
+
+  // Hero
+  heroes: Hero[];
+
   // Hero sélectionné
   selectedHero: Hero;
-  
-  // une instance
+
+  // Une instance
   hero: Hero = {
     id: 1,
     name: 'Windstorm'
@@ -26,8 +41,19 @@ export class HeroesComponent implements OnInit {
   onSelect(hero: Hero): void {
     this.selectedHero = hero;
   }
-  
-  constructor() {}
 
-  ngOnInit() {}
+  // Récupère les héros du service
+  getHeroes(): void {
+    // Assigne un tableau de héro à la propriété de la composante heroes
+    // this.heroes = this.heroService.getHeroes();
+
+    // Attend un observable pour émèttre un tableau de héros
+    this.heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes);
+  }
+
+  // Appel de la méthode avec ngOnInit
+  ngOnInit() {
+    this.getHeroes();
+  }
 }
