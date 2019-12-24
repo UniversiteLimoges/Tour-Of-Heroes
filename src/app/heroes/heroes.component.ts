@@ -30,17 +30,17 @@ export class HeroesComponent implements OnInit {
   heroes: Hero[];
 
   // Hero sélectionné
-  selectedHero: Hero;
+  // selectedHero: Hero;
 
   // Une instance
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm'
-  };
+  // hero: Hero = {
+  //   id: 1,
+  //   name: 'Windstorm'
+  // };
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-  }
+  // onSelect(hero: Hero): void {
+  //   this.selectedHero = hero;
+  // }
 
   // Récupère les héros du service
   getHeroes(): void {
